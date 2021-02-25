@@ -14,7 +14,7 @@ def health():
 
 
 @native_form_router.get("/native/form/{id}", tags=["form", "native"])
-def get_form_by_id(id: int, response: Response):
+def get_form_by_id(id: str, response: Response):
     response.headers["Content-Type"] = "application/json"
     return form_template_service(id)
 
