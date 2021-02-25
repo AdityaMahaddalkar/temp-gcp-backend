@@ -1,17 +1,14 @@
-import logging
-import os
-from pymongo import MongoClient
+import json
+
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-import json
 
 project_id = "hack-finnovate"
 cred = credentials.ApplicationDefault()
-firebase_admin.initialize_app(cred,{
-    'projectId' : project_id,
+firebase_admin.initialize_app(cred, {
+    'projectId': project_id,
 })
-
 
 DATABASE = "stof"
 FORM_TEMPLATE_COLLECTION = "form_template"
@@ -20,7 +17,7 @@ FORM_STORAGE_COLLECTION = "form_storage"
 
 def check_native_health():
     db = firestore.client()
-    if collection_obj is None:
+    if db is None:
         return {
             "health": "red",
             "database": "NC"
@@ -30,6 +27,7 @@ def check_native_health():
             "health": "green",
             "database": "CC"
         }
+
 
 def form_template_service(id: str):
     db = firestore.client()
