@@ -16,7 +16,7 @@ def health():
 @native_form_router.get("/native/form/{id}", tags=["form", "native"])
 def get_form_by_id(id: str, response: Response):
     response.headers["Content-Type"] = "application/json"
-    return form_template_service(id)
+    return form_template_service(id).to_dict()
 
 
 @native_form_router.post("/native/form", tags=["form", "native"], status_code=201)
